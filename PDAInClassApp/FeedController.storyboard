@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LBF-vK-FjR">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Feed-->
+        <scene sceneID="FgW-vU-hRX">
+            <objects>
+                <navigationController id="LBF-vK-FjR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Feed" image="icon_tabBar_feed" id="HIP-1N-bpZ"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sbL-Te-22O">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uGZ-gq-6dg" kind="relationship" relationship="rootViewController" id="VqY-Bu-Ihf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nKG-2P-sFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-775" y="58"/>
+        </scene>
+        <!--Feed-->
+        <scene sceneID="Abt-bT-rCK">
+            <objects>
+                <viewController id="uGZ-gq-6dg" customClass="FeedController" customModule="PDAInClassApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n2H-o6-ct0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="88M-HP-uq7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feed" id="3Nc-he-G8h"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LC7-RN-3lM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="111" y="57"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_tabBar_feed" width="26" height="26"/>
+    </resources>
+</document>
