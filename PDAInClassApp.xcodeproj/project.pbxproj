@@ -147,8 +147,8 @@
 		E813562F208573FC008A6927 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E865AC65207C39980061E1F8 /* LoginController.swift */,
 				E865AC67207C39C30061E1F8 /* LoginController.storyboard */,
+				E865AC65207C39980061E1F8 /* LoginController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";

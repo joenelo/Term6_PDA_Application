@@ -110,9 +110,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="375" height="875"/>
                     <connections>
-                        <outlet property="aboutText" destination="Gph-Mm-qvz" id="Qkb-IX-ZpC"/>
-                        <outlet property="ageText" destination="3oN-Fq-Vik" id="cyd-ca-xvY"/>
-                        <outlet property="previewImage" destination="ibv-i9-ybC" id="z4J-dR-da4"/>
+                        <outlet property="aboutText" destination="Gph-Mm-qvz" id="dxL-IY-MqI"/>
+                        <outlet property="ageText" destination="3oN-Fq-Vik" id="aq9-Ic-ySh"/>
+                        <outlet property="profileImage" destination="ibv-i9-ybC" id="23p-3E-D0j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjL-uf-ML8" userLabel="First Responder" sceneMemberID="firstResponder"/>
