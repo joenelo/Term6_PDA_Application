@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,16 +34,115 @@
             <objects>
                 <viewController id="uGZ-gq-6dg" customClass="FeedController" customModule="PDAInClassApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n2H-o6-ct0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-1v-ETN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="1087"/>
+                                <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="81" id="VdG-Gu-1BQ" customClass="PostCell" customModule="PDAInClassApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VdG-Gu-1BQ" id="Wcv-F3-dew">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgm-nR-Evi">
+                                                    <rect key="frame" x="10" y="10" width="355" height="60.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                                    <state key="normal" title="Post">
+                                                        <color key="titleColor" red="0.94644273479999996" green="0.23406310299999999" blue="0.1488787543" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hgm-nR-Evi" firstAttribute="leading" secondItem="Wcv-F3-dew" secondAttribute="leading" constant="10" id="21e-Cf-Qfl"/>
+                                                <constraint firstItem="hgm-nR-Evi" firstAttribute="top" secondItem="Wcv-F3-dew" secondAttribute="top" constant="10" id="PrV-Ly-rhk"/>
+                                                <constraint firstAttribute="bottom" secondItem="hgm-nR-Evi" secondAttribute="bottom" constant="10" id="djJ-Qy-do6"/>
+                                                <constraint firstAttribute="trailing" secondItem="hgm-nR-Evi" secondAttribute="trailing" constant="10" id="pPc-so-Peq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="hgm-nR-Evi" id="azf-sK-soi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPhotoCell" rowHeight="440" id="lj8-EY-F6h" customClass="FeedPhotoCell" customModule="PDAInClassApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="109" width="375" height="440"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lj8-EY-F6h" id="gaI-bZ-aWa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="439.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGA-le-T0K">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="lGA-le-T0K" secondAttribute="height" id="4ih-KA-5Zc"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-aY-vAj">
+                                                    <rect key="frame" x="0.0" y="375" width="375" height="64.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nQR-aY-vAj" firstAttribute="leading" secondItem="gaI-bZ-aWa" secondAttribute="leading" id="5B8-Mj-YGy"/>
+                                                <constraint firstItem="nQR-aY-vAj" firstAttribute="top" secondItem="lGA-le-T0K" secondAttribute="bottom" id="hc7-kS-LSH"/>
+                                                <constraint firstAttribute="trailing" secondItem="nQR-aY-vAj" secondAttribute="trailing" id="k2V-7s-EGi"/>
+                                                <constraint firstItem="lGA-le-T0K" firstAttribute="leading" secondItem="gaI-bZ-aWa" secondAttribute="leading" id="kbe-Jz-C2a"/>
+                                                <constraint firstAttribute="trailing" secondItem="lGA-le-T0K" secondAttribute="trailing" id="keg-TL-6qa"/>
+                                                <constraint firstItem="lGA-le-T0K" firstAttribute="top" secondItem="gaI-bZ-aWa" secondAttribute="top" id="lpa-a1-bOZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="nQR-aY-vAj" secondAttribute="bottom" id="xGq-F3-u4X"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="feedImageView" destination="lGA-le-T0K" id="hEA-tt-TCy"/>
+                                            <outlet property="label" destination="nQR-aY-vAj" id="L4n-pr-WX0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="117" id="Nb9-5O-p4Q">
+                                        <rect key="frame" x="0.0" y="549" width="375" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nb9-5O-p4Q" id="Dfr-Bg-cHL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="115" id="TUP-SB-SZ9">
+                                        <rect key="frame" x="0.0" y="666" width="375" height="115"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TUP-SB-SZ9" id="yPw-yU-I9i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uGZ-gq-6dg" id="nky-lh-cTP"/>
+                                    <outlet property="delegate" destination="uGZ-gq-6dg" id="uxU-b2-WbJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SeY-1v-ETN" firstAttribute="trailing" secondItem="88M-HP-uq7" secondAttribute="trailing" id="E8f-hB-H86"/>
+                            <constraint firstItem="SeY-1v-ETN" firstAttribute="top" secondItem="88M-HP-uq7" secondAttribute="top" id="ZQW-eV-xYv"/>
+                            <constraint firstItem="SeY-1v-ETN" firstAttribute="leading" secondItem="88M-HP-uq7" secondAttribute="leading" id="fdp-5p-EQt"/>
+                            <constraint firstItem="SeY-1v-ETN" firstAttribute="bottom" secondItem="88M-HP-uq7" secondAttribute="bottom" id="kED-ic-sOk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="88M-HP-uq7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="3Nc-he-G8h"/>
+                    <size key="freeformSize" width="375" height="1200"/>
+                    <connections>
+                        <outlet property="tableView" destination="SeY-1v-ETN" id="Rhz-43-gFy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LC7-RN-3lM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="57"/>
+            <point key="canvasLocation" x="109.59999999999999" y="55.772113943028494"/>
         </scene>
     </scenes>
     <resources>

@@ -1,11 +1,6 @@
-//
-//  MeController.swift
-//  PDAInClassApp
-//
-//  Created by joseph nelson on 2018-05-07.
-//  Copyright © 2018 joseph nelson. All rights reserved.
-//
 
+
+import Foundation
 import UIKit
 import Firebase
 
@@ -13,23 +8,25 @@ final class MeController: UIViewController {
     
     fileprivate var profile: Profile?
     
+    // MARK: IBOutlets.
+    
     @IBOutlet private var profileImageView: UIImageView!
     @IBOutlet private var nameField: UITextField!
     @IBOutlet private var aboutTextView: UITextView!
     @IBOutlet private var ageField: UITextField!
+    @IBOutlet private var indicator: UIActivityIndicatorView!
+    @IBOutlet private var overlay: UIView!
     
-    @IBAction func saveTapped(_ sender: UIBarButtonItem) {
-        sender.isEnabled = false
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
-            sender.isEnabled = true
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        
+        showOverlay()
+        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) {[weak self] timer in
+            self?.hideOverlay()
         }
         
-        guard let name = nameField.text,
-                let age = ageField.text,
-                let about = aboutTextView.text,
-            let UID = Auth.auth().currentUser?.uid else {
-                return
-        }
+        
+        
+        guard let name = nameField.text, let age = ageField.text, let about = aboutTextView.text, let UID = Auth.auth().currentUser?.uid else { return }
         
         var object = [String: String]()
         object["username"] = name
@@ -39,69 +36,113 @@ final class MeController: UIViewController {
         Database.database().reference().child("Users").child(UID).updateChildValues(object)
         
         if let image = self.profileImageView.image {
-            let data = UIImagePNGRepresentation(image)!
+            let data = UIImageJPEGRepresentation(image, 0.6)!
             Storage.storage().reference()
-                    .child("Users")
-                    .child(UID)
-                .putData(data, metadata: nil) { (metaData, error) in
-                    guard let absolute = metaData?.downloadURL()?.absoluteString else{
-                        return
-            }
-            Database.database().reference()
-                    .child("Users")
-                    .child(UID)
-                .updateChildValues(["url":absolute])
+                .child("Users")
+                .child(UID)
+                .putData(data, metadata: nil) {(metaData, error) in
+                    guard let absolute = metaData?.downloadURL()?.absoluteString else { return }
                     
-                    }
+                    Database.database().reference().child("Users").child(UID).updateChildValues(["url":absolute])
+            }
+        }
+        
+    }
+    
+    
+    
+    // MARK: Initialization.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set views.
+        setupProfileImageView()
+        setFields()
+        setOverlay()
+        loadData()
+        loadPhoto()
+        showOverlay()
+    }
+    
+    private func showOverlay() {
+        self.indicator.startAnimating()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.overlay.alpha = 1
+        }
+        
+    }
+    private func hideOverlay() {
+        indicator.stopAnimating()
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.overlay.alpha = 0
         }
     }
+    
     @objc func imageViewTapped() {
         let picker = UIImagePickerController()
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupProfileImageView()
-        setFields()
-        load()
-    }
+    
+    
 }
 
+
 fileprivate extension MeController {
-    func load() {
+    func loadData() {
         if let UID = Auth.auth().currentUser?.uid {
             Database.database().reference()
+                .child("Users")
+                .child(UID)
+                .observeSingleEvent(of: .value) {[weak self] snapshot in
+                    let profile = Profile(snapshot: snapshot)
+                    self?.profile = profile
+                    
+                    self?.nameField.text = profile?.username ?? ""
+                    self?.aboutTextView.text = profile?.about ?? ""
+                    self?.ageField.text = profile?.age ?? ""
+    
+            }
+        }
+    }
+    
+    func loadPhoto() {
+        guard let UID = Auth.auth().currentUser?.uid  else {return}
+        
+        Storage.storage().reference()
             .child("Users")
             .child(UID)
-                .observeSingleEvent(of: .value) { snapshot in
-                    let profile = Profile(snapshot: snapshot)
-                    self.profile = profile
-                    print(profile)
-                    self.ageField.text = profile?.age ?? ""
-                    self.aboutTextView.text = profile?.about ?? ""
-                    self.nameField.text = profile?.username ?? ""
-
-                    
-            }
+            .getData(maxSize: 2024*1000) { [weak self] (data, error) in
+                
+                self?.hideOverlay()
+                guard let data = data else {return}
+                self?.profileImageView.image = UIImage(data: data)
         }
     }
 }
 
-
 fileprivate extension MeController {
     func setupProfileImageView() {
         let recognizer = UITapGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(imageViewTapped))
+        recognizer.addTarget(self, action: #selector(self.imageViewTapped))
         profileImageView.addGestureRecognizer(recognizer)
     }
     
-    // function to se the fields to contain nothing
     func setFields() {
         self.nameField.text = ""
         self.ageField.text = ""
         self.aboutTextView.text = ""
+    }
+    
+    func setOverlay() {
+        self.view.addSubview(overlay)
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        overlay.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        overlay.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        overlay.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        overlay.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        overlay.alpha = 0
     }
 }
 
