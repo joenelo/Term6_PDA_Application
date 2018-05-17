@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bpx-X4-T8Y">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Write Post-->
+        <scene sceneID="O7w-X1-RO0">
+            <objects>
+                <viewController id="bpx-X4-T8Y" customClass="PostFeedController" customModule="PDAInClassApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="joz-c0-aeE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jad-O5-nep">
+                                <rect key="frame" x="10" y="84" width="355" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0U-xR-JuI">
+                                <rect key="frame" x="20" y="304" width="335" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="c0U-xR-JuI" secondAttribute="height" id="8J5-Fp-gGV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="100"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="imageButtonTapped:" destination="bpx-X4-T8Y" eventType="touchUpInside" id="ImT-fO-fdj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="c0U-xR-JuI" firstAttribute="leading" secondItem="KTc-dv-k7V" secondAttribute="leading" constant="20" id="Fmc-cI-DC5"/>
+                            <constraint firstItem="KTc-dv-k7V" firstAttribute="trailing" secondItem="jad-O5-nep" secondAttribute="trailing" constant="10" id="Sor-e8-dp1"/>
+                            <constraint firstItem="c0U-xR-JuI" firstAttribute="top" secondItem="jad-O5-nep" secondAttribute="bottom" constant="20" id="cbU-v1-Pj3"/>
+                            <constraint firstItem="jad-O5-nep" firstAttribute="top" secondItem="KTc-dv-k7V" secondAttribute="top" constant="20" id="huj-Ai-A03"/>
+                            <constraint firstItem="KTc-dv-k7V" firstAttribute="trailing" secondItem="c0U-xR-JuI" secondAttribute="trailing" constant="20" id="oHP-X5-6Rb"/>
+                            <constraint firstItem="jad-O5-nep" firstAttribute="leading" secondItem="KTc-dv-k7V" secondAttribute="leading" constant="10" id="vqu-Cj-6sO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KTc-dv-k7V"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Write Post" id="2HW-ZC-r7q">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="gFc-hX-Yfz">
+                            <connections>
+                                <action selector="postTapped:" destination="bpx-X4-T8Y" id="wrn-ix-YOf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageButton" destination="c0U-xR-JuI" id="6yQ-b8-9Ee"/>
+                        <outlet property="textView" destination="jad-O5-nep" id="dGm-5A-IAD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFH-A4-iwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-25" y="-164"/>
+        </scene>
+    </scenes>
+</document>
